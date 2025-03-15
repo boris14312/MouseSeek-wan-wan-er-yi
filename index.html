@@ -238,7 +238,7 @@
         let hasPaid = false;
         let pendingMessage = "";
 
-        const API_KEY = "sk-KP1CMv​​TsjuD1X2eT5r8gp0oGlUf3bWrEJpfl68W8hqfLetnh";  // 这里填入你的 API Key
+        const API_KEY = "sk-4c30dded35cc4a688719bd2503f29772";  // 这里填入你的 DeepSeek API Key
 
         // 发送消息时，先检查是否已付费
         async function prepareSendMessage() {
@@ -281,7 +281,7 @@
             inputField.value = "";
             pendingMessage = "";
 
-            // 获取 OpenAI 回复
+            // 获取 DeepSeek 回复
             const botReply = await getBotReply(message);
 
             // 显示 AI 回复
@@ -291,11 +291,11 @@
             chatbox.scrollTop = chatbox.scrollHeight;
         }
 
-        // 调用 OpenAI API 获取回复
+        // 调用 DeepSeek API 获取回复
         async function getBotReply(userMessage) {
-            const apiUrl = "https://api.openai.com/v1/chat/completions";
+            const apiUrl = "https://api.deepseek.com/v1/chat/completions";  // DeepSeek 的 API URL
             const requestBody = {
-                model: "gpt-3.5-turbo",  // 或 "gpt-4"
+                model: "deepseek-chat",  // 使用 DeepSeek 的模型
                 messages: [{ role: "user", content: userMessage }],
                 temperature: 0.7
             };
