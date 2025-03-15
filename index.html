@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mouseseek Chat</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: calc(12px + 0.5vw);
+        }
+
+        body {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            overflow: hidden;
+        }
+
+        /* VIP 充值界面（默认隐藏） */
+        #vipScreen {
+            position: absolute;
+            width: 100%;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.8);
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            transition: opacity 0.5s ease;
+        }
+
+        #vipScreen h1 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .vip-options {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .vip-option {
+            padding: 1rem 2rem;
+            font-size: 1.2rem;
+            background: gold;
+            color: black;
+            border: none;
+            border-radius: 2rem;
+            cursor: pointer;
+        }
+
+        /* 新导航栏样式 */
+        #navbar { 
+            width: 100%; 
+            display: flex; 
+            align-items: center; 
+            justify-content: space-between; 
+            background: #333; 
+            padding: 1vw 2vw; 
+            box-sizing: border-box; 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            z-index: 1000; 
+        }
+
+        #navbar .logo { 
+            width: 3em; 
+            height: 3em; 
+            background: white; 
+            border-radius: 50%; 
+        }
+
+        #navbar .title { 
+            color: white; 
+            font-size: 1.5em; 
+            font-weight: bold; 
+            margin-left: 1vw; 
+            text-decoration: none; /* 去掉下划线 */
+        }
+
+        #navbar .nav-links { 
+            display: flex; 
+            gap: 2vw; 
+        }
+
+        #navbar .nav-links a { 
+            color: white; 
+            text-decoration: none; 
+            font-size: 1.2em; 
+        }
+
+        /* 主界面 */
+        #chatbox {
+            flex: 1;
+            width: 100%;
+            max-width: 600px;
+            margin: auto;
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            gap: 1rem;
+            overflow: hidden;
+            margin-top: 80px; /* 留出空间避免被导航栏遮挡 */
+        }
+
+        .message {
+            display: inline-block;
+            padding: 0.8rem;
+            border-radius: 0.8rem;
+            font-size: 1.2rem;
+            max-width: 80%;
+            word-wrap: break-word;
+        }
+
+        .user {
+            align-self: flex-end;
+            background-color: #007bff;
+            color: white;
+        }
+
+        .bot {
+            align-self: flex-start;
+            background-color: #e0e0e0;
+            color: black;
+        }
+
+        #inputBox {
+            flex: 0 0 10%;
+            width: 100%;
+            display: flex;
+            gap: 1vw;
+            padding: 1rem;
+            background: white;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        input {
+            flex: 1;
+            padding: 0.8rem;
+            border: 1px solid #ccc;
+            border-radius: 2rem;
+            font-size: 1.2rem;
+            outline: none;
+        }
+
+        button {
+            padding: 0.8rem 1.2rem;
+            border: none;
+            background: #007bff;
+            color: white;
+            border-radius: 2rem;
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+
+        /* 内容区域 */
+        #content {
+            width: 90vw;
+            max-width: 600px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-top: 70px; /* 给内容区域顶部留出空间，避免被导航栏遮挡 */
+        }
+
+        #chatImage {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            margin-bottom: 20px; /* 在图片和正文之间添加一些空隙 */
+        }
+
+        #chatTitle { 
+            font-size: 1.5em; 
+            font-weight: bold; 
+            margin-top: 1vw; 
+        }
+
+        #chatDescription { 
+            font-size: 1.2em; 
+            text-align: justify; /* 使文本两端对齐 */
+            margin-top: 1vw; 
+            padding: 0 10px; /* 添加内边距，避免文字靠近边缘 */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- VIP 充值界面 -->
+    <div id="vipScreen">
+        <h1>请选择您的鼠民充值</h1>
+        <div class="vip-options">
+            <button class="vip-option" onclick="unlockChat('6个老鼠')">6个老鼠</button>
+            <button class="vip-option" onclick="unlockChat('648个老鼠')">648个老鼠</button>
+            <button class="vip-option" onclick="unlockChat('鼠王')">鼠王</button>
+        </div>
+    </div>
+
+    <!-- 新导航栏 -->
+    <nav id="navbar">
+        <div style="display: flex; align-items: center;">
+            <a href="index.html">
+                <div class="logo"></div>
+            </a>
+            <a href="index.html" class="title">MouseSeek</a>
+        </div>
+        <div class="nav-links">
+            <a href="./about.html">关于我们</a>
+            <a href="./support.html">联系方式</a>
+        </div>
+    </nav>
+    
+    <div id="chatbox"></div>
+
+    <div id="inputBox">
+        <input type="text" id="userInput" placeholder="输入消息...">
+        <button onclick="prepareSendMessage()">发送</button>
+    </div>
+
+    <script>
+        let hasPaid = false;
+        let pendingMessage = "";
+
+        const API_KEY = "sk-KP1CMv​​TsjuD1X2eT5r8gp0oGlUf3bWrEJpfl68W8hqfLetnh";  // 这里填入你的 API Key
+
+        // 发送消息时，先检查是否已付费
+        async function prepareSendMessage() {
+            const inputField = document.getElementById("userInput");
+            const message = inputField.value.trim();
+            if (!message) return;
+
+            // 如果已付费，直接发送消息并获取回复
+            if (hasPaid) {
+                sendMessage(message);
+            } else {
+                pendingMessage = message;
+                // 如果未付费，显示VIP充值界面
+                document.getElementById("vipScreen").style.display = "flex";
+            }
+        }
+
+        // 选择 VIP 后解锁聊天，并发送之前输入的消息
+        function unlockChat(option) {
+            hasPaid = true;
+            document.getElementById("vipScreen").style.opacity = "0";
+            setTimeout(() => document.getElementById("vipScreen").style.display = "none", 500);
+
+            // 给出提示
+            const chatbox = document.getElementById("chatbox");
+            chatbox.innerHTML += `<div class='message bot'>您已选择 "${option}"，开始聊天吧！</div>`;
+
+            // 发送之前输入的消息
+            sendMessage(pendingMessage);
+        }
+
+        // 发送消息并获取 AI 回复
+        async function sendMessage(message) {
+            const chatbox = document.getElementById("chatbox");
+            
+            // 显示用户消息
+            chatbox.innerHTML += `<div class='message user'>${message}</div>`;
+            
+            const inputField = document.getElementById("userInput");
+            inputField.value = "";
+            pendingMessage = "";
+
+            // 获取 OpenAI 回复
+            const botReply = await getBotReply(message);
+
+            // 显示 AI 回复
+            chatbox.innerHTML += `<div class='message bot'>${botReply}</div>`;
+
+            // 滚动到底部
+            chatbox.scrollTop = chatbox.scrollHeight;
+        }
+
+        // 调用 OpenAI API 获取回复
+        async function getBotReply(userMessage) {
+            const apiUrl = "https://api.openai.com/v1/chat/completions";
+            const requestBody = {
+                model: "gpt-3.5-turbo",  // 或 "gpt-4"
+                messages: [{ role: "user", content: userMessage }],
+                temperature: 0.7
+            };
+
+            try {
+                const response = await fetch(apiUrl, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${API_KEY}`
+                    },
+                    body: JSON.stringify(requestBody)
+                });
+
+                const data = await response.json();
+
+                // 检查 API 返回的数据
+                if (response.ok && data.choices && data.choices.length > 0) {
+                    return data.choices[0].message.content.trim();  // 返回 AI 生成的回复
+                } else {
+                    return "抱歉，无法获取AI回复。";
+                }
+            } catch (error) {
+                console.error("Error:", error);
+                return "抱歉，鼠鼠们无法处理您的请求。";
+            }
+        }
+    </script>
+</body>
+</html>

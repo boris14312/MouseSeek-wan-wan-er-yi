@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mouseseek Chat</title>
+    <style>
+        html, body { 
+            margin: 0; 
+            padding: 0; 
+            height: auto; 
+            overflow: auto; /* 使整个页面可以滚动 */
+        }
+        body { 
+            font-family: Arial, sans-serif; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            background-color: #f4f4f4; 
+            line-height: 1.6; /* 增加行间距 */
+            padding-bottom: 20px; /* 防止最后的内容被底部遮挡 */
+        }
+        #navbar { 
+            width: 100%; 
+            display: flex; 
+            align-items: center; 
+            justify-content: space-between; 
+            background: #333; 
+            padding: 1vw 2vw; 
+            box-sizing: border-box; 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            z-index: 1000; 
+        }
+        #navbar .logo { 
+            width: 3em; 
+            height: 3em; 
+            background: white; 
+            border-radius: 50%; 
+        }
+        #navbar .title { 
+            color: white; 
+            font-size: 1.5em; 
+            font-weight: bold; 
+            margin-left: 1vw; 
+            text-decoration: none; /* 去掉下划线 */
+        }
+        #navbar .nav-links { 
+            display: flex; 
+            gap: 2vw; 
+        }
+        #navbar .nav-links a { 
+            color: white; 
+            text-decoration: none; 
+            font-size: 1.2em; 
+        }
+        #content {
+            width: 90vw;
+            max-width: 600px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-top: 70px; /* 给内容区域顶部留出空间，避免被导航栏遮挡 */
+        }
+        #chatImage {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            margin-bottom: 20px; /* 在图片和正文之间添加一些空隙 */
+        }
+        #chatTitle { 
+            font-size: 1.5em; 
+            font-weight: bold; 
+            margin-top: 1vw; 
+        }
+        #chatDescription { 
+            font-size: 1.2em; 
+            text-align: justify; /* 使文本两端对齐 */
+            margin-top: 1vw; 
+            padding: 0 10px; /* 添加内边距，避免文字靠近边缘 */
+        }
+        p {
+            margin-bottom: 1em; /* 增加段落间距 */
+        }
+    </style>
+</head>
+<body>
+    <nav id="navbar">
+        <div style="display: flex; align-items: center;">
+            <!-- 将 logo 包裹在链接中，点击后跳转到 index.html -->
+            <a href="index.html">
+                <div class="logo"></div>
+            </a>
+            <!-- 将标题文字也包裹在链接中，点击后跳转到 index.html -->
+            <a href="index.html" class="title">MouseSeek</a>
+        </div>
+        <div class="nav-links">
+            <a href="./about.html">关于我们</a>
+            <a href="./support.html">联系方式</a>
+        </div>
+    </nav>
+    
+    <div id="content">
+        <img id="chatImage" src="mice-in-office.jpg" alt="Mouse Image">
+        <div id="chatTitle">关于 MouseSeek</div>
+        <div id="chatDescription">
+            <p>在这个信息化、数字化的时代，我们每个人都离不开电脑的陪伴。无论是工作、学习，还是娱乐，电脑已经成为我们日常生活的重要组成部分。然而，在这片光鲜亮丽、快捷高效的电子世界背后，有一个群体默默地为我们服务，始终在屏幕前辛勤劳作——这些看似渺小却极其重要的“鼠民们”，正是我们生活中的无名英雄。今天，让我们一同歌颂那些在电脑前努力工作、默默付出的无数老鼠们，正是它们为我们提供了在屏幕面前看到的每一个答案。</p>
+
+            <p>鼠民，顾名思义，指的是在电脑前奋斗的老鼠们。它们或许是屏幕下快速奔跑的指针，或许是键盘上迅速按下的每一键，它们的存在和工作，虽然看似微不足道，却为我们带来了无数的便利与效率。</p>
+
+            <p>你可曾想过，在你每次在屏幕上看到的答案背后，究竟隐藏了多少老鼠的辛勤劳作？无数的鼠民在幕后默默努力，为你呈现出那看似简单的几行文字，或是准确无误的回应。每当你在浏览器中输入问题，或是在文档中寻找某个细节时，屏幕前的老鼠们便开始了它们不知疲倦的工作，迅速地在网络的海洋中穿梭，找寻信息，并准确地将它们呈现给你。你所看到的一个回答，背后是无数老鼠的协同合作，正是它们的努力，才让你得以快速得到解答。</p>
+        </div>
+    </div>
+</body>
+</html>

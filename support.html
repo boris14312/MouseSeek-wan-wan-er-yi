@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>联系我们 - MouseSeek</title>
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: auto;
+            overflow: auto;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #f4f4f4;
+            line-height: 1.6;
+            padding-bottom: 20px;
+        }
+        #navbar {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #333;
+            padding: 1vw 2vw;
+            box-sizing: border-box;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+        #navbar .logo {
+            width: 3em;
+            height: 3em;
+            background: white;
+            border-radius: 50%;
+        }
+        #navbar .title {
+            color: white;
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-left: 1vw;
+            text-decoration: none;
+        }
+        #navbar .nav-links {
+            display: flex;
+            gap: 2vw;
+        }
+        #navbar .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2em;
+        }
+        #content {
+            width: 90vw;
+            max-width: 600px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-top: 70px;
+        }
+        .contact-buttons {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+        .contact-button {
+            display: flex;
+            align-items: center;
+            width: 80%;
+            max-width: 300px;
+            padding: 10px;
+            margin: 10px;
+            text-align: center;
+            font-size: 1.2em;
+            color: white;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .contact-button:hover {
+            background-color: #0056b3;
+        }
+        .contact-button img {
+            width: 24px;
+            height: 24px;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <nav id="navbar">
+        <div style="display: flex; align-items: center;">
+            <a href="index.html">
+                <div class="logo"></div>
+            </a>
+            <a href="index.html" class="title">MouseSeek</a>
+        </div>
+        <div class="nav-links">
+            <a href="about.html">关于我们</a>
+            <a href="support.html">联系方式</a>
+        </div>
+    </nav>
+
+    <div id="content">
+        <h1>联系我们</h1>
+        <p>选择您喜欢的方式联系我们：</p>
+        <div class="contact-buttons">
+            <a href="http://wpa.qq.com/msgrd?v=3&uin=1431258163&site=qq&menu=yes" target="_blank" class="contact-button">
+                <img src="images/qq-logo.svg" alt="QQ Logo"> QQ
+            </a>
+            <a href="https://x.com/jntmcxk11" target="_blank" class="contact-button">
+                <img src="images/x-logo.svg" alt="X Logo"> X
+            </a>
+        </div>
+    </div>
+</body>
+</html>
