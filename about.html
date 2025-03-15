@@ -36,8 +36,8 @@
         #navbar .logo { 
             width: 3em; 
             height: 3em; 
-            background: white; 
-            border-radius: 50%; 
+            border-radius: 50%; /* 如果图片是圆形，可以保留 */
+            object-fit: cover; /* 确保图片比例正确 */
         }
         #navbar .title { 
             color: white; 
@@ -89,9 +89,9 @@
 <body>
     <nav id="navbar">
         <div style="display: flex; align-items: center;">
-            <!-- 将 logo 包裹在链接中，点击后跳转到 index.html -->
+            <!-- 将 logo 替换为图片 -->
             <a href="index.html">
-                <div class="logo"></div>
+                <img src="./logo.png" class="logo" alt="MouseSeek Logo">
             </a>
             <!-- 将标题文字也包裹在链接中，点击后跳转到 index.html -->
             <a href="index.html" class="title">MouseSeek</a>

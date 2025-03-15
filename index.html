@@ -19,7 +19,7 @@
             height: 100vh;
             display: flex;
             flex-direction: column;
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #f4f4f4;
             overflow: hidden;
         }
@@ -40,23 +40,30 @@
         }
 
         #vipScreen h1 {
-            font-size: 2rem;
-            margin-bottom: 1rem;
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: #ffd700;
         }
 
         .vip-options {
             display: flex;
-            gap: 1rem;
+            gap: 1.5rem;
         }
 
         .vip-option {
-            padding: 1rem 2rem;
+            padding: 1.2rem 2.5rem;
             font-size: 1.2rem;
-            background: gold;
-            color: black;
+            background: #ffd700;
+            color: #333;
             border: none;
             border-radius: 2rem;
             cursor: pointer;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+
+        .vip-option:hover {
+            background: #ffcc00;
+            transform: scale(1.05);
         }
 
         /* 新导航栏样式 */
@@ -77,8 +84,8 @@
         #navbar .logo { 
             width: 3em; 
             height: 3em; 
-            background: white; 
-            border-radius: 50%; 
+            border-radius: 50%; /* 如果图片是圆形，可以保留 */
+            object-fit: cover; /* 确保图片比例正确 */
         }
 
         #navbar .title { 
@@ -98,6 +105,11 @@
             color: white; 
             text-decoration: none; 
             font-size: 1.2em; 
+            transition: color 0.3s ease;
+        }
+
+        #navbar .nav-links a:hover { 
+            color: #ffd700; 
         }
 
         /* 主界面 */
@@ -122,6 +134,7 @@
             font-size: 1.2rem;
             max-width: 80%;
             word-wrap: break-word;
+            transition: opacity 0.3s ease, transform 0.3s ease;
         }
 
         .user {
@@ -153,6 +166,11 @@
             border-radius: 2rem;
             font-size: 1.2rem;
             outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        input:focus {
+            border-color: #007bff;
         }
 
         button {
@@ -163,10 +181,12 @@
             border-radius: 2rem;
             cursor: pointer;
             font-size: 1.2rem;
+            transition: background 0.3s ease, transform 0.2s ease;
         }
 
         button:hover {
             background: #0056b3;
+            transform: scale(1.05);
         }
 
         /* 内容区域 */
@@ -185,12 +205,15 @@
             max-width: 400px;
             height: auto;
             margin-bottom: 20px; /* 在图片和正文之间添加一些空隙 */
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
 
         #chatTitle { 
-            font-size: 1.5em; 
+            font-size: 1.8em; 
             font-weight: bold; 
             margin-top: 1vw; 
+            color: #333;
         }
 
         #chatDescription { 
@@ -198,6 +221,7 @@
             text-align: justify; /* 使文本两端对齐 */
             margin-top: 1vw; 
             padding: 0 10px; /* 添加内边距，避免文字靠近边缘 */
+            color: #555;
         }
     </style>
 </head>
@@ -217,7 +241,7 @@
     <nav id="navbar">
         <div style="display: flex; align-items: center;">
             <a href="index.html">
-                <div class="logo"></div>
+                <img src="./logo.png" class="logo" alt="MouseSeek Logo">
             </a>
             <a href="index.html" class="title">MouseSeek</a>
         </div>
@@ -316,7 +340,7 @@
                 if (response.ok && data.choices && data.choices.length > 0) {
                     return data.choices[0].message.content.trim();  // 返回 AI 生成的回复
                 } else {
-                    return "抱歉，无法获取AI回复。";
+                    return "鼠鼠们破产了😭😭😭";
                 }
             } catch (error) {
                 console.error("Error:", error);
