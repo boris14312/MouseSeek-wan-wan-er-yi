@@ -47,16 +47,23 @@
 
         .vip-options {
             display: flex;
-            gap: 1.5rem;
+            flex-direction: column;
+            gap: 1rem;
+            width: 80%;
+            max-width: 400px;
+            background: #fff;
+            padding: 2rem;
+            border-radius: 1rem;
+            color: #333;
         }
 
         .vip-option {
-            padding: 1.2rem 2.5rem;
-            font-size: 1.2rem;
+            padding: 1rem;
+            font-size: 1rem;
             background: #ffd700;
             color: #333;
             border: none;
-            border-radius: 2rem;
+            border-radius: 0.5rem;
             cursor: pointer;
             transition: background 0.3s ease, transform 0.2s ease;
         }
@@ -66,6 +73,56 @@
             transform: scale(1.05);
         }
 
+        .vip-benefits {
+            text-align: left;
+            margin-bottom: 1.5rem;
+        }
+
+        .vip-benefits h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .vip-benefits ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .vip-benefits li {
+            margin-bottom: 0.5rem;
+        }
+
+        .vip-pricing {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+        }
+
+        .vip-pricing .price {
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .vip-pricing .discount {
+            color: #ff0000;
+            font-size: 0.9rem;
+        }
+
+        .vip-agreement {
+            font-size: 0.8rem;
+            color: #666;
+            margin-top: 1rem;
+        }
+
+        .vip-agreement a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .vip-agreement a:hover {
+            text-decoration: underline;
+        }
+
         /* 新导航栏样式 */
         #navbar { 
             width: 100%; 
@@ -73,7 +130,7 @@
             align-items: center; 
             justify-content: space-between; 
             background: #333; 
-            padding: 1vw 2vw; 
+            padding: 1rem; 
             box-sizing: border-box; 
             position: fixed; 
             top: 0; 
@@ -82,29 +139,29 @@
         }
 
         #navbar .logo { 
-            width: 3em; 
-            height: 3em; 
-            border-radius: 50%; /* 如果图片是圆形，可以保留 */
-            object-fit: cover; /* 确保图片比例正确 */
+            width: 2.5em; 
+            height: 2.5em; 
+            border-radius: 50%; 
+            object-fit: cover; 
         }
 
         #navbar .title { 
             color: white; 
-            font-size: 1.5em; 
+            font-size: 1.2em; 
             font-weight: bold; 
-            margin-left: 1vw; 
-            text-decoration: none; /* 去掉下划线 */
+            margin-left: 0.5rem; 
+            text-decoration: none; 
         }
 
         #navbar .nav-links { 
             display: flex; 
-            gap: 2vw; 
+            gap: 1rem; 
         }
 
         #navbar .nav-links a { 
             color: white; 
             text-decoration: none; 
-            font-size: 1.2em; 
+            font-size: 1em; 
             transition: color 0.3s ease;
         }
 
@@ -124,14 +181,14 @@
             justify-content: flex-end;
             gap: 1rem;
             overflow: hidden;
-            margin-top: 80px; /* 留出空间避免被导航栏遮挡 */
+            margin-top: 70px; /* 留出空间避免被导航栏遮挡 */
         }
 
         .message {
             display: inline-block;
             padding: 0.8rem;
             border-radius: 0.8rem;
-            font-size: 1.2rem;
+            font-size: 1rem;
             max-width: 80%;
             word-wrap: break-word;
             transition: opacity 0.3s ease, transform 0.3s ease;
@@ -150,11 +207,11 @@
         }
 
         #inputBox {
-            flex: 0 0 10%;
+            flex: 0 0 auto;
             width: 100%;
             display: flex;
-            gap: 1vw;
-            padding: 1rem;
+            gap: 0.5rem;
+            padding: 0.5rem;
             background: white;
             box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
         }
@@ -164,7 +221,7 @@
             padding: 0.8rem;
             border: 1px solid #ccc;
             border-radius: 2rem;
-            font-size: 1.2rem;
+            font-size: 1rem;
             outline: none;
             transition: border-color 0.3s ease;
         }
@@ -180,7 +237,7 @@
             color: white;
             border-radius: 2rem;
             cursor: pointer;
-            font-size: 1.2rem;
+            font-size: 1rem;
             transition: background 0.3s ease, transform 0.2s ease;
         }
 
@@ -202,25 +259,25 @@
 
         #chatImage {
             width: 100%;
-            max-width: 400px;
+            max-width: 300px;
             height: auto;
-            margin-bottom: 20px; /* 在图片和正文之间添加一些空隙 */
+            margin-bottom: 20px; 
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
 
         #chatTitle { 
-            font-size: 1.8em; 
+            font-size: 1.5em; 
             font-weight: bold; 
-            margin-top: 1vw; 
+            margin-top: 1rem; 
             color: #333;
         }
 
         #chatDescription { 
-            font-size: 1.2em; 
-            text-align: justify; /* 使文本两端对齐 */
-            margin-top: 1vw; 
-            padding: 0 10px; /* 添加内边距，避免文字靠近边缘 */
+            font-size: 1em; 
+            text-align: justify; 
+            margin-top: 1rem; 
+            padding: 0 10px; 
             color: #555;
         }
     </style>
@@ -231,9 +288,15 @@
     <div id="vipScreen">
         <h1>请选择您的鼠民充值</h1>
         <div class="vip-options">
-            <button class="vip-option" onclick="unlockChat('6个老鼠')">6个老鼠</button>
-            <button class="vip-option" onclick="unlockChat('648个老鼠')">648个老鼠</button>
-            <button class="vip-option" onclick="unlockChat('鼠王')">鼠王</button>
+            <button class="vip-option" onclick="unlockChat('6个鼠民')">
+                <img src="./mouse.png" alt="Mouse" style="width: 120px; height: 120px; vertical-align: middle;"> x6
+            </button>
+            <button class="vip-option" onclick="unlockChat('648个鼠民')">
+                <img src="./mouse.png" alt="Mouse" style="width: 120px; height: 120px; vertical-align: middle;"> x648
+            </button>
+            <button class="vip-option" onclick="unlockChat('鼠王')">
+                <img src="./mouse.png" alt="Mouse" style="width: 120px; height: 120px; vertical-align: middle;"> 鼠王
+            </button>
         </div>
     </div>
 
