@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mouseseek Chat</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -19,7 +20,7 @@
             height: 100vh;
             display: flex;
             flex-direction: column;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Roboto', sans-serif;
             background-color: #f4f4f4;
             overflow: hidden;
         }
@@ -55,13 +56,14 @@
             padding: 2rem;
             border-radius: 1rem;
             color: #333;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
         .vip-option {
             padding: 1rem;
             font-size: 1rem;
-            background: #ffd700;
-            color: #333;
+            background: #1A73E8;
+            color: white;
             border: none;
             border-radius: 0.5rem;
             cursor: pointer;
@@ -69,7 +71,7 @@
         }
 
         .vip-option:hover {
-            background: #ffcc00;
+            background: #1557B0;
             transform: scale(1.05);
         }
 
@@ -115,7 +117,7 @@
         }
 
         .vip-agreement a {
-            color: #007bff;
+            color: #1A73E8;
             text-decoration: none;
         }
 
@@ -129,13 +131,14 @@
             display: flex; 
             align-items: center; 
             justify-content: space-between; 
-            background: #333; 
+            background: #1A73E8; 
             padding: 1rem; 
             box-sizing: border-box; 
             position: fixed; 
             top: 0; 
             left: 0; 
             z-index: 1000; 
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
         #navbar .logo { 
@@ -192,17 +195,18 @@
             max-width: 80%;
             word-wrap: break-word;
             transition: opacity 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
         .user {
             align-self: flex-end;
-            background-color: #007bff;
+            background-color: #1A73E8;
             color: white;
         }
 
         .bot {
             align-self: flex-start;
-            background-color: #e0e0e0;
+            background-color: #ffffff;
             color: black;
         }
 
@@ -227,13 +231,13 @@
         }
 
         input:focus {
-            border-color: #007bff;
+            border-color: #1A73E8;
         }
 
         button {
             padding: 0.8rem 1.2rem;
             border: none;
-            background: #007bff;
+            background: #1A73E8;
             color: white;
             border-radius: 2rem;
             cursor: pointer;
@@ -242,7 +246,7 @@
         }
 
         button:hover {
-            background: #0056b3;
+            background: #1557B0;
             transform: scale(1.05);
         }
 
@@ -286,7 +290,7 @@
 
     <!-- VIP 充值界面 -->
     <div id="vipScreen">
-        <h1>请选择您的鼠民充值</h1>
+        <h1>请选择您的鼠鼠充值</h1>
         <div class="vip-options">
             <button class="vip-option" onclick="unlockChat('6个鼠民')">
                 <img src="./mouse.png" alt="Mouse" style="width: 120px; height: 120px; vertical-align: middle;"> x6
@@ -295,7 +299,7 @@
                 <img src="./mouse.png" alt="Mouse" style="width: 120px; height: 120px; vertical-align: middle;"> x648
             </button>
             <button class="vip-option" onclick="unlockChat('鼠王')">
-                <img src="./mouse.png" alt="Mouse" style="width: 120px; height: 120px; vertical-align: middle;"> 鼠王
+                <img src="./mouseking.png" alt="Mouse" style="width: 120px; height: 120px; vertical-align: middle;"> 鼠王
             </button>
         </div>
     </div>
@@ -345,13 +349,23 @@
 
         // 选择 VIP 后解锁聊天，并发送之前输入的消息
         function unlockChat(option) {
+            const chatbox = document.getElementById("chatbox");
+
+            if (option === "鼠王") {
+                // 如果选择的是鼠王，显示提示并不再继续
+                chatbox.innerHTML += `<div class='message bot'>鼠王鼠了，鼠鼠们去开追悼会了😭😭😭</div>`;
+                document.getElementById("vipScreen").style.opacity = "0";
+                setTimeout(() => document.getElementById("vipScreen").style.display = "none", 500);
+                return; // 直接返回，不继续执行后续代码
+            }
+
+            // 如果不是鼠王，正常解锁聊天
             hasPaid = true;
             document.getElementById("vipScreen").style.opacity = "0";
             setTimeout(() => document.getElementById("vipScreen").style.display = "none", 500);
 
             // 给出提示
-            const chatbox = document.getElementById("chatbox");
-            chatbox.innerHTML += `<div class='message bot'>您已选择 "${option}"，开始聊天吧！</div>`;
+            chatbox.innerHTML += `<div class='message bot'>您已选择献祭 "${option}"，开始吱吱吱吧！</div>`;
 
             // 发送之前输入的消息
             sendMessage(pendingMessage);
